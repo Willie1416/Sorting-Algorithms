@@ -1,0 +1,30 @@
+def quicksort2(lst, i, j):
+  if j > i:
+    pivot = partition(lst, i, j)
+    quicksort2(lst, i, pivot-1)
+    quicksort2(lst, pivot+1, j)
+
+def partition(lst, low, high):
+  pivot = lst[low]
+  i = low + 1
+  j = high
+
+  while i <= j:
+    while(i <= high and lst[i] < pivot):
+      i+=1
+    while (j >= low and lst[j] > pivot):
+      j-=1
+    if i < j:
+      lst[i], lst[j] = lst[j], lst[i]
+    print(i, j, pivot, lst)
+
+  pivot = j
+  lst[low], lst[pivot] = lst[pivot], lst[low]
+  return pivot
+
+
+lst = [5, 3, 0, 9, 7]
+
+print("Before sorting: ", lst)
+quicksort2(lst, 0, len(lst)-1)
+print("After sorting: ", lst)
